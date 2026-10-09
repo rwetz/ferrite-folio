@@ -1,6 +1,6 @@
 [package]
 name = "ferrite-folio"
-version = "0.1.0"
+version = "0.1.1"
 description = "A native text-mode Project Gutenberg reader powered by Gutendex."
 license = "Apache-2.0"
 authors = ["Ryan Wetzstein"]
