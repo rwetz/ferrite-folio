@@ -2,7 +2,7 @@
 
 A Project Gutenberg reader using Gutendex for discovery.
 
-A working development scaffold, not a published release.
+An early development release. [Windows downloads](https://github.com/rwetz/ferrite-folio/releases/latest) are also installable through Lodestone.
 
 ## Run
 

@@ -1,0 +1,55 @@
+name: Release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  CARGO_TERM_COLOR: always
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+      - uses: Swatinem/rust-cache@v2
+      - name: Check tag matches package version
+        shell: pwsh
+        run: |
+          $version = (Select-String -Path Cargo.toml -Pattern '^version = "([^"]+)"').Matches[0].Groups[1].Value
+          if ($env:GITHUB_REF_NAME -ne "v$version") { throw "Tag and package version differ" }
+      - name: Build
+        run: cargo build --release --locked --target x86_64-pc-windows-msvc
+      - name: Tests
+        run: cargo test --release --locked --target x86_64-pc-windows-msvc
+      - name: Package and verify executable
+        shell: pwsh
+        run: |
+          $name = "ferrite-folio-$env:GITHUB_REF_NAME-x86_64-pc-windows-msvc"
+          $folder = Join-Path $env:RUNNER_TEMP $name
+          New-Item -ItemType Directory -Path $folder | Out-Null
+          Copy-Item -LiteralPath 'target/x86_64-pc-windows-msvc/release/ferrite-folio.exe' -Destination $folder
+          foreach ($file in @('README.md', 'LICENSE', 'NOTICE', 'CHANGELOG.md')) {
+            Copy-Item -LiteralPath $file -Destination $folder
+          }
+          Copy-Item -LiteralPath 'assets/licenses' -Destination $folder -Recurse
+          $process = Start-Process -FilePath (Join-Path $folder 'ferrite-folio.exe') -ArgumentList '--version' -WindowStyle Hidden -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Packaged executable failed" }
+          New-Item -ItemType Directory -Path dist | Out-Null
+          $archive = Join-Path (Resolve-Path dist) "$name.zip"
+          Compress-Archive -LiteralPath $folder -DestinationPath $archive
+          $hash = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$hash  $name.zip" | Set-Content -LiteralPath dist/SHA256SUMS.txt -Encoding ascii
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $assets = @(Get-ChildItem -LiteralPath dist -File | Select-Object -ExpandProperty FullName)
+          gh release create $env:GITHUB_REF_NAME @assets --verify-tag --title "Folio $env:GITHUB_REF_NAME" --notes-file RELEASE_NOTES.md
