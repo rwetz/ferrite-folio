@@ -10,9 +10,11 @@ edition = "2024"
 rust-version = "1.92"
 
 [dependencies]
+futures = "0.3"
+csv = "1"
 serde_json = "1"
 ureq = "3"
-ferrite-design = { git = "https://github.com/rwetz/ferrite-design", rev = "ca37602228165b6c2bf50b075d9bcf8d4bbd233f" }
+ferrite-design = { git = "https://github.com/rwetz/ferrite-design", rev = "4ddbb40bf34e219278784fdcb4e5d0e4e76f4cdc" }
 # Must match ferrite-design exactly (PITFALLS §1).
 gpui = { package = "gpui-pre", version = "=0.3.8" }
 gpui_platform = { package = "gpui-pre-platform", version = "=0.3.8" }
@@ -20,3 +22,6 @@ gpui_platform = { package = "gpui-pre-platform", version = "=0.3.8" }
 # gpui is sluggish unoptimised; optimise dependencies even in dev builds.
 [profile.dev.package."*"]
 opt-level = 3
+
+[target."cfg(windows)".build-dependencies]
+winresource = "0.1.31"

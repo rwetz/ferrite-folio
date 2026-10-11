@@ -58,3 +58,12 @@ Release commits stay off `main`, so the workflow cannot create a push loop.
 Builds and tests must succeed before publication. Rerunning a workflow reuses
 its tag. Manual `vMAJOR.MINOR.PATCH` tags still work when they match the package
 version. Push feature branches normally; they do not publish releases.
+
+## Catalogue availability
+
+If Gutendex is unavailable, Folio searches Gutenberg's official English text
+catalogue. The initial catalogue download is cached locally for later searches.
+Book downloads are bounded, and service errors remain visible in the window.
+
+Each Windows executable includes its own pixel icon. `assets/logo.svg` also
+supplies the matching catalogue icon in Lodestone.

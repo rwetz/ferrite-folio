@@ -1212,6 +1212,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "csv"
+version = "1.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "52cd9d68cf7efc6ddfaaee42e7288d3a99d613d4b50f76ce9827ae0c6e14f938"
+dependencies = [
+ "csv-core",
+ "itoa",
+ "ryu",
+ "serde_core",
+]
+
+[[package]]
+name = "csv-core"
+version = "0.1.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "704a3c26996a80471189265814dbc2c257598b96b8a7feae2d31ace646bb9782"
+dependencies = [
+ "memchr",
+]
+
+[[package]]
 name = "ctor"
 version = "1.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1567,7 +1588,7 @@ dependencies = [
 [[package]]
 name = "ferrite-design"
 version = "0.1.0"
-source = "git+https://github.com/rwetz/ferrite-design?rev=ca37602228165b6c2bf50b075d9bcf8d4bbd233f#ca37602228165b6c2bf50b075d9bcf8d4bbd233f"
+source = "git+https://github.com/rwetz/ferrite-design?rev=4ddbb40bf34e219278784fdcb4e5d0e4e76f4cdc#4ddbb40bf34e219278784fdcb4e5d0e4e76f4cdc"
 dependencies = [
  "anyhow",
  "gpui-pre",
@@ -1583,11 +1604,14 @@ dependencies = [
 name = "ferrite-folio"
 version = "0.1.0"
 dependencies = [
+ "csv",
  "ferrite-design",
+ "futures",
  "gpui-pre",
  "gpui-pre-platform",
  "serde_json",
  "ureq",
+ "winresource",
 ]
 
 [[package]]
@@ -6901,6 +6925,16 @@ checksum = "7d6f32a0ff4a9f6f01231eb2059cc85479330739333e0e58cadf03b6af2cca10"
 dependencies = [
  "cfg-if",
  "windows-sys 0.61.2",
+]
+
+[[package]]
+name = "winresource"
+version = "0.1.31"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0986a8b1d586b7d3e4fe3d9ea39fb451ae22869dcea4aa109d287a374d866087"
+dependencies = [
+ "toml 1.1.6+spec-1.1.0",
+ "version_check",
 ]
 
 [[package]]
