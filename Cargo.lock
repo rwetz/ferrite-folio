@@ -1602,7 +1602,7 @@ dependencies = [
 
 [[package]]
 name = "ferrite-folio"
-version = "0.1.0"
+version = "0.1.3"
 dependencies = [
  "csv",
  "ferrite-design",
