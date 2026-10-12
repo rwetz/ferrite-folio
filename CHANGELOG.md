@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- The reading page shows a scrollbar.
+
 - Add a cached official Gutenberg catalogue fallback for Gutendex outages.
 - Use dedicated request workers, visible status and library navigation.
 - Add matching SVG catalogue icons and embedded Windows application icons.

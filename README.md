@@ -67,3 +67,7 @@ Book downloads are bounded, and service errors remain visible in the window.
 
 Each Windows executable includes its own pixel icon. `assets/logo.svg` also
 supplies the matching catalogue icon in Lodestone.
+
+## Settings
+
+Open the sliders button in the title bar, press Ctrl+, or choose Settings from the command palette. All ten schemes, Dark/Light/System appearance, motion refresh rate (12 to 240 FPS), and row density apply immediately and persist per app. Save failures appear in Settings. Start with `--settings` to open the drawer directly. Ferrite launcher environment overrides take precedence at startup.
