@@ -1,6 +1,20 @@
-# Folio
+<p align="center">
+  <img src="assets/logo.svg" width="128" height="128" alt="Folio logo">
+</p>
 
-A Project Gutenberg reader using Gutendex for discovery.
+<h1 align="center">Folio</h1>
+
+<p align="center">
+  A Project Gutenberg reader for Ferrite, using Gutendex for discovery.
+</p>
+
+<p align="center">
+  <a href="https://github.com/rwetz/ferrite-folio/actions/workflows/ci.yml"><img src="https://github.com/rwetz/ferrite-folio/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/rwetz/ferrite-folio/releases/latest"><img src="https://img.shields.io/github/v/release/rwetz/ferrite-folio?color=F2A93B&labelColor=18181B" alt="Latest release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-3D3D42?labelColor=18181B" alt="License"></a>
+</p>
+
+![Folio listing Project Gutenberg search results](docs/main.png)
 
 An early development release. [Windows downloads](https://github.com/rwetz/ferrite-folio/releases/latest) are also installable through Lodestone.
 
@@ -71,6 +85,13 @@ supplies the matching catalogue icon in Lodestone.
 ## Settings
 
 Open the sliders button in the title bar, press Ctrl+, or choose Settings from the command palette. All ten schemes, Dark/Light/System appearance, motion refresh rate (12 to 240 FPS), and row density apply immediately and persist per app. Save failures appear in Settings. Start with `--settings` to open the drawer directly. Ferrite launcher environment overrides take precedence at startup.
+
+## Keys
+
+| Keys | |
+|---|---|
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> | Command palette |
+| <kbd>Ctrl</kbd>+<kbd>,</kbd> | Settings |
 
 ---
 
