@@ -281,14 +281,10 @@ impl Render for Folio {
                 )
                 .child(
                     // A visible bar, so a long page reads as "there's more".
-                    scroll_area("content").flex_1().min_h_0().child(
-                        div()
-                            .flex()
-                            .flex_col()
-                            .gap_3()
-                            .p_4()
-                            .children(content),
-                    ),
+                    scroll_area("content")
+                        .flex_1()
+                        .min_h_0()
+                        .child(div().flex().flex_col().gap_3().p_4().children(content)),
                 )
                 .child(
                     status_bar()
